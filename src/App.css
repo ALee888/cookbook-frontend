@@ -1,38 +1,145 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+    /* CSS HEX 
+    --ucla-blue: #2274a5ff;
+    --pearl: #e7dfc6ff;
+    --alice-blue: #e9f1f7ff;
+    --rich-black: #131b23ff;
+    --cinereous: #816c61ff;
+    */
+    /* CSS HEX */
+    --celadon: #b9d8c2ff;
+    --light-blue: #9ac2c9ff;
+    --cadet-gray: #8aa1b1ff;
+    --ebony: #4a5043ff;
+    --sunglow: #ffcb47ff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    background-color: var(--celadon);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.app {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* Nav 
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cinereous);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 1.2rem;
+    z-index: 9999;
+}
+nav img {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+nav button {
+    background-color: transparent;
+    color: var(--tea-green);
+    font-size: inherit;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+nav button:hover {
+    color: #ddd;
+}
+nav button:focus {
+    outline: none;
+    box-shadow: none;
+}
+nav button.active {
+    color: #fff;
+    background-color: #4CAF50;
+}
+*/
+
+/* Header */
+header {
+    margin: 10px;
+    align-items: center;
+
+    font-size: 100%;
+}
+header h1 {
+    font-family: cursive;
+    font-size: 75px;
+    color: var(--ebony);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.SearchBar {
+    height: 100%;
+    width: 100%;
+}
+.SearchBar input {
+    width: 50%;
+}
+
+/* div - recipes */
+table{
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 1000px;
+    background-color: var(--light-blue);
+}
+
+th {
+    border: 1px solid;
+}
+.id {
+    text-align: center;
+}
+td {
+    border: 1px solid;
+    padding: 5px;
+}
+
+tr:hover {background-color: var(--sunglow)};
+
+/* Popup */
+.recipeInfo-overlay {
+    color: white;
+}
+.recipeInfo-content {
+    width: 100px;
+    border-bottom: 1px solid var(--ebony);
+    padding: 5px;
+    background-color: var(--sunglow);
+    color: var(--sunglow);
+}
+
+.recipeInfo > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
 }
