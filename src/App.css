@@ -74,6 +74,14 @@ nav button.active {
     background-color: #4CAF50;
 }
 */
+.link {
+    color: grey;
+}
+
+.active {
+    color: purple;
+}
+
 
 /* Header */
 header {
@@ -116,7 +124,7 @@ td {
     padding: 5px;
 }
 
-tr:hover {background-color: var(--sunglow)};
+.recipe:hover {background-color: var(--sunglow)};
 
 /* Popup */
 .recipeInfo-overlay {
