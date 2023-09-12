@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 const RecipeInfo = () => {
 	const { recipeId } = useParams();
@@ -13,15 +13,17 @@ const RecipeInfo = () => {
 				`http://localhost:4000/ingredients/?id=${recipeId}`
 			);
 			const data = await response.json();
-			console.log(data);
 			setIngredients(data.result);
 		};
 		fetchPost();
 	}, [recipeId]);
 	return (
 		<div className='recipeinfo'>
-			<h2> Recipe #{ recipeId }</h2>
+			<h2> Recipe Id:#{ recipeId }</h2>
 			<div className='info'>
+				<div>
+					{history.state}
+				</div>
 				<table>
 					<tr>
 						<th>name</th>

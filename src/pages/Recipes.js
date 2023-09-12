@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
-
+    const navigate = useNavigate();
+        
     // GET with fetch API
     useEffect(() => {
         const fetchPost = async () => {
@@ -16,6 +17,15 @@ function Recipes() {
         };
         fetchPost();
     }, []);
+
+    const openRecipe = (recipeId, description, instructions) => {
+        navigate(
+            `/recipes/${recipeId}`,
+            {
+                state: { recipeId: recipeId, description: description, instructions: instructions }
+            }
+        )
+    };
     return (
         <div className='recipes'>
             <table>
@@ -27,10 +37,13 @@ function Recipes() {
                 {recipes.map((recipe, index) => (
                     <tr key={index} className='recipe'>    
                         <td className='id'>{recipe.id}</td>
-                        <td>
-                            <Link to={`/recipes/${recipe.id}`}>{recipe.name}</Link>
-                        </td>
+                        <td>{recipe.name}</td>
                         <td>{recipe.created_at}</td>
+                        <td>
+                            <button onClick={() => {openRecipe(recipe.id, recipe.description, recipe.instructions)}}>
+                                View
+                            </button>
+                        </td>
                     </tr>
                 ))}
             </table>
