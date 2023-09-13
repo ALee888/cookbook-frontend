@@ -6,7 +6,7 @@ const RecipeInfo = () => {
 	const location = useLocation();
 	const [ingredients, setIngredients] = useState([]);
 
-	//console.log(location, " useLocation Hook");
+	console.log(location, " useLocation Hook");
 
 	const info = location.state;
 

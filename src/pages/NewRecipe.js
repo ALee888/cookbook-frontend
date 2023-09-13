@@ -4,6 +4,7 @@ function NewRecipe () {
     const [recipe, setRecipe] = useState({
         name: '',
         description: '',
+        instructions: '',
         ingredients: [{ name: '', quanitty: '', measurement: ''}],
     });
 
@@ -39,6 +40,7 @@ function NewRecipe () {
         setRecipe({
             name: '',
             description: '',
+            instructions: '',
             ingredients: []
         })
     };
@@ -73,6 +75,14 @@ function NewRecipe () {
                     id='description'
                     name="description" 
                     value = {recipe.description} 
+                    onChange={handleInputChange}
+                    required
+                />
+                <label htmlFor='instructions'>Instructions:</label>
+                <textarea 
+                    id='instructions'
+                    name="instructions" 
+                    value = {recipe.instructions} 
                     onChange={handleInputChange}
                     required
                 />
