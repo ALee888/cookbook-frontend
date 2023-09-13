@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 const RecipeInfo = () => {
 	const { recipeId } = useParams();
+	const location = useLocation();
 	const [ingredients, setIngredients] = useState([]);
+
+	//console.log(location, " useLocation Hook");
+
+	const info = location.state;
 
 	// GET with fetch API
 	useEffect(() => {
 		const fetchPost = async () => {
-			console.log(recipeId)
 			const response = await fetch(
 				`http://localhost:4000/ingredients/?id=${recipeId}`
 			);
@@ -21,9 +25,10 @@ const RecipeInfo = () => {
 		<div className='recipeinfo'>
 			<h2> Recipe Id:#{ recipeId }</h2>
 			<div className='info'>
-				<div>
-					{history.state}
-				</div>
+				<p>{info ? info.name : "Name not found"}</p>
+				<p>{info ? info.description : "Description Not found"}</p>
+				<p>{info ? info.instructions : "Instructions not found"}</p>	
+				
 				<table>
 					<tr>
 						<th>name</th>
@@ -38,6 +43,7 @@ const RecipeInfo = () => {
 						</tr>
 					))}
 				</table>
+				<p>Created: {info.created_at}</p>
 			</div>
 			<Link to='/recipes'>back to products</Link>
 		</div>
