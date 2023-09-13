@@ -5,7 +5,7 @@ function NewRecipe () {
         name: '',
         description: '',
         instructions: '',
-        ingredients: [{ name: '', quanitty: '', measurement: ''}],
+        ingredients: [],
     });
 
     // Handle input changes for recipe details
@@ -69,7 +69,6 @@ function NewRecipe () {
                     onChange={handleInputChange}
                     required
                 />
-                {/*Name, description and ingredients [{name, quantity, measurements}]*/}
                 <label htmlFor='description'>Description:</label>
                 <textarea 
                     id='description'
@@ -98,8 +97,9 @@ function NewRecipe () {
                             required
                         />
                         <input
-                            type='text'
+                            type='number'
                             name='quantity'
+                            min='0'
                             value={ingredient.quantity}
                             onChange={(e) => handleIngredientChange(e, index)}
                             placeholder='Quantity'

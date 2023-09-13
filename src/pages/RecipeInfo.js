@@ -5,9 +5,6 @@ const RecipeInfo = () => {
 	const { recipeId } = useParams();
 	const location = useLocation();
 	const [ingredients, setIngredients] = useState([]);
-
-	console.log(location, " useLocation Hook");
-
 	const info = location.state;
 
 	// GET with fetch API
@@ -21,6 +18,7 @@ const RecipeInfo = () => {
 		};
 		fetchPost();
 	}, [recipeId]);
+
 	return (
 		<div className='recipeinfo'>
 			<h2> Recipe Id:#{ recipeId }</h2>
@@ -28,7 +26,6 @@ const RecipeInfo = () => {
 				<p>{info ? info.name : "Name not found"}</p>
 				<p>{info ? info.description : "Description Not found"}</p>
 				<p>{info ? info.instructions : "Instructions not found"}</p>	
-				
 				<table>
 					<tr>
 						<th>name</th>
