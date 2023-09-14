@@ -20,6 +20,7 @@ const RecipeInfo = () => {
 	}, [recipeId]);
 
 	const deleteRecipe = async () => {
+		// TODO: Check User authorizatoin
 		await fetch(`http://localhost:4000/recipes/?id=${recipeId}`, { method: 'DELETE' });
     };
 
