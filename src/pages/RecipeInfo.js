@@ -19,6 +19,10 @@ const RecipeInfo = () => {
 		fetchPost();
 	}, [recipeId]);
 
+	const deleteRecipe = async () => {
+		await fetch(`http://localhost:4000/recipes/?id=${recipeId}`, { method: 'DELETE' });
+    };
+
 	return (
 		<div className='recipeinfo'>
 			<h2> Recipe Id:#{ recipeId }</h2>
@@ -43,6 +47,7 @@ const RecipeInfo = () => {
 				<p>Created: {info.created_at}</p>
 			</div>
 			<Link to='/recipes'>back to products</Link>
+			<Link to='/recipes' onClick={deleteRecipe}>DELETE RECIPE</Link>
 		</div>
 	);
 };
