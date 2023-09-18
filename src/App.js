@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AuthProvider } from 'react-auth-kit';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
@@ -13,19 +14,21 @@ import SharedLayout from './pages/SharedLayout';
 function App() {
     const [user, setUser] = useState(null);
     return (
-        <Router>
-            <Routes>
-                <Route path='/' element={<SharedLayout />}>
-                    <Route index element={<Home />} />
-                    <Route path='recipes' element={<Recipes />} />
-                    <Route path='recipes/:recipeId' element={<RecipeInfo />} />
-                    <Route path='newRecipe' element={<NewRecipe />} />
-                    <Route path='login' element={<Login setUser={setUser}></Login>} />
-                    <Route path='profile' element={<Profile user={user}></Profile>} />
-                    <Route path='*' element={<Error />} />
-                </Route>
-            </Routes>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <Routes>
+                    <Route path='/' element={<SharedLayout />}>
+                        <Route index element={<Home />} />
+                        <Route path='recipes' element={<Recipes />} />
+                        <Route path='recipes/:recipeId' element={<RecipeInfo />} />
+                        <Route path='newRecipe' element={<NewRecipe />} />
+                        <Route path='login' element={<Login setUser={setUser}></Login>} />
+                        <Route path='profile' element={<Profile user={user}></Profile>} />
+                        <Route path='*' element={<Error />} />
+                    </Route>
+                </Routes>
+            </Router>
+        </AuthProvider>
     )
 }
 

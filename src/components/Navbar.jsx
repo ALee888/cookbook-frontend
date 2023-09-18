@@ -19,6 +19,7 @@ const Navbar = () => {
             <NavLink to='/login' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
                 Login
             </NavLink>
+            {/* TODO: Add (if logged-in -> show profile else show login) */}
         </nav>
     );
 };
