@@ -6,6 +6,7 @@ const RecipeInfo = () => {
 	const location = useLocation();
 	const [ingredients, setIngredients] = useState([]);
 	const info = location.state;
+	const userId = 2; // TODO: Grab from login system
 
 	// GET with fetch API
 	useEffect(() => {
@@ -23,6 +24,19 @@ const RecipeInfo = () => {
 		// TODO: Check User authorizatoin
 		await fetch(`http://localhost:4000/recipes/?id=${recipeId}`, { method: 'DELETE' });
     };
+
+	const saveRecipe = async () => {
+		
+		// POST users-recipes
+		const response = await fetch (`http://localhost:4000/users-recipes`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ userId: userId, recipeId: recipeId })
+		});
+		console.log(response.json());
+	}
 
 	return (
 		<div className='recipeinfo'>
@@ -49,6 +63,7 @@ const RecipeInfo = () => {
 			</div>
 			<Link to='/recipes'>back to products</Link>
 			<Link to='/recipes' onClick={deleteRecipe}>DELETE RECIPE</Link>
+			<Link to='/recipes' onClick={saveRecipe}>Save Recipe</Link>
 		</div>
 	);
 };
