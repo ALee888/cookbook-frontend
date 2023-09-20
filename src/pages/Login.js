@@ -6,7 +6,7 @@ const Login = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        // Change to fetch
+        // Change to fetch 
         axios.post('/api/login', formData)
             .then((res)=>{
                 if(res.status === 200){
