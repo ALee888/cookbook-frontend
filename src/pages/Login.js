@@ -1,40 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSignIn } from 'react-auth-kit';
 const Login = () => {
     const signIn = useSignIn()
-    const [formData, setFormData] = React.useState({email: '', password: ''})
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    });
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-        // Change to fetch 
-        axios.post('/api/login', formData)
-            .then((res)=>{
-                if(res.status === 200){
-                    if(signIn(
-                        {
-                            token: res.data.token,
-                            expiresIn:res.data.expiresIn,
-                            tokenType: "Bearer",
-                            authState: res.data.authUserState,
-                            refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
-                            refreshTokenExpireIn: res.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
-                        }
-                    )){ // Only if you are using refreshToken feature
-                        // Redirect or do-something
-                    }else {
-                        //Throw error
-                    }
-                }
-            })
-    }
+    // Handle input changes for user details
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value})
+    };
 
+    // Handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        // Call API
+        fetchPost();
+        
+        // Reset User Inputs
+        setUser({
+            name: '',
+            email: '',
+            password: ''            
+        })
+
+        // TODO: Go to Home Screen
+    };
+
+    // Fetch POST Request
+    const fetchPost = async () => {
+        const response = await fetch(`http://localhost:4000/users/register`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(user),
+        });
+        console.log(response.json());
+    };
     return (
-        <form onSubmit={onSubmit}>
-            <input type={"email"} onChange={(e)=>setFormData({...formData, email: e.target.value})}/>
-            <input type={"password"} onChange={(e)=>setFormData({...formData, password: e.target.value})}/>
-
-            <button>Submit</button>
-        </form>
+        <div className="login">
+            <form onSubmit={handleSubmit}>
+                <div className='formGroup'>
+                    <label for="email">Email Address</label>
+                    <input 
+                        type='email'
+                        name='email'
+                        value={user.email}
+                        onChange={(e) => handleInputChange(e)}
+                        placeholder='email'
+                        required
+                    />
+                </div>
+                <div className='formGroup'>
+                    <label for="password">Password</label>
+                    <input 
+                        type='password'
+                        name='password'
+                        value={user.password}
+                        onChange={(e) => handleInputChange(e)}
+                        placeholder='password'
+                        required
+                    />
+                </div>
+                <button type='submit'>Login</button>
+            </form>
+        </div>
     )
 };
 export default Login;
