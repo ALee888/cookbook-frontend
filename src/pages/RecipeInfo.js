@@ -40,30 +40,33 @@ const RecipeInfo = () => {
 
 	return (
 		<div className='recipeinfo'>
-			<h2> Recipe Id:#{ recipeId }</h2>
-			<div className='info'>
-				<h3>{info ? info.name : "Name not found"}</h3>
+			<div className='recipeHeader'>
+				<h1> {info ? info.name : "Name not found"} </h1>
+				<p> {info ? info.created_by : "Creator N/A"} </p>			
+				<p> Created: {info.created_at}</p>
 				<p>{info ? info.description : "Description Not found"}</p>
-				<p>{info ? info.instructions : "Instructions not found"}</p>	
+			</div>
+			<div className='ingredients'>
+				<h3>Ingredients</h3>
 				<table>
-					<tr>
-						<th>name</th>
-						<th>quantity</th>
-						<th>measurement</th>
-					</tr>
 					{ingredients.map((ingredient, index) => (
-						<tr key={index} className='ingredient'>    
-							<td>{ingredient.name}</td>
+						<tr key={index} className='ingredient'>
 							<td>{ingredient.quantity}</td>
-							<td>{ingredient.measurement}</td>
+							<td>{ingredient.measurement}</td>    
+							<td>{ingredient.name}</td>
 						</tr>
 					))}
 				</table>
-				<p>Created: {info.created_at}</p>
 			</div>
-			<Link to='/recipes'><button>back to products</button></Link>
-			<Link to='/recipes' onClick={deleteRecipe}><button>DELETE RECIPE</button></Link>
-			<Link to='/recipes' onClick={saveRecipe}><button>Save Recipe</button></Link>
+			<div className='instructions'>
+				<h3>Instructions</h3>
+				<p>{info ? info.instructions : "Instructions not found"}</p>	
+			</div>
+			<div>
+				<Link to='/recipes'><button>back to products</button></Link>
+				<Link to='/recipes' onClick={deleteRecipe}><button>DELETE RECIPE</button></Link>
+				<Link to='/recipes' onClick={saveRecipe}><button>Save Recipe</button></Link>
+			</div>
 		</div>
 	);
 };

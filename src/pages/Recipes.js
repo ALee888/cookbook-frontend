@@ -19,6 +19,7 @@ function Recipes() {
 
     return (
         <div className='recipes'>
+            <h1>Recipes</h1>
             <table>
                 <tr>
                     <th>id</th>
@@ -27,7 +28,7 @@ function Recipes() {
                 </tr>
                 {recipes.map((recipe, index) => (
                     <tr key={index} className='recipe'>    
-                        <td className='id'>{recipe.id}</td>
+                        <td>{recipe.id}</td>
                         <td>
                             <Link 
                                 to={`/recipes/${recipe.id}`}

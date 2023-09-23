@@ -32,7 +32,10 @@ body {
     align-items: center;
 }
 
-
+.home {
+    color: black;
+    text-align: center;
+}
 /* Nav 
 nav {
     display: flex;
@@ -81,52 +84,45 @@ nav button.active {
 .active {
     color: purple;
 }
-
-
-/* Header */
-header {
-    margin: 10px;
-    align-items: center;
-
-    font-size: 100%;
+/* --- Recipes --- */
+.recipes {
+    text-align: center;
 }
-header h1 {
-    font-family: cursive;
-    font-size: 75px;
-    color: var(--ebony);
+.recipes h1 {
+    color: white;
 }
-
-
-.SearchBar {
-    height: 100%;
-    width: 100%;
-}
-.SearchBar input {
-    width: 50%;
-}
-
-/* div - recipes */
-table{
+.recipes table{
     border: 1px solid;
     border-collapse: collapse;
     width: 1000px;
     background-color: var(--light-blue);
 }
-
-th {
+.recipes th {
     border: 1px solid;
 }
-.id {
+.recipes td {
     text-align: center;
-}
-td {
     border: 1px solid;
     padding: 5px;
 }
 
-.recipe:hover {background-color: var(--sunglow)};
+.recipe:hover {background-color: var(--sunglow)}
 
-/* RecipeInfo */
-.recipeInfo {
+/* --- RecipeInfo --- */
+.recipeinfo {
+    margin-top: 10px;
+    width: 50%;
+    background-color: var(--light-blue); 
     text-align: center;
+    border: 1px solid;
+    
+    display: flex;
+    flex-direction: column;
+
+    
+}
+
+.recipeinfo button {
+    margin: 5px;
+    background-color: var(--sunglow);
 }
