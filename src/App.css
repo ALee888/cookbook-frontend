@@ -126,28 +126,7 @@ td {
 
 .recipe:hover {background-color: var(--sunglow)};
 
-/* Popup */
-.recipeInfo-overlay {
-    color: white;
-}
-.recipeInfo-content {
-    width: 100px;
-    border-bottom: 1px solid var(--ebony);
-    padding: 5px;
-    background-color: var(--sunglow);
-    color: var(--sunglow);
-}
-
-.recipeInfo > .close {
-    cursor: pointer;
-    position: absolute;
-    display: block;
-    padding: 2px 5px;
-    line-height: 20px;
-    right: -10px;
-    top: -10px;
-    font-size: 24px;
-    background: #ffffff;
-    border-radius: 18px;
-    border: 1px solid #cfcece;
+/* RecipeInfo */
+.recipeInfo {
+    text-align: center;
 }

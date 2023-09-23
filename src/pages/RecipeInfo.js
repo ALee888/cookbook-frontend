@@ -42,7 +42,7 @@ const RecipeInfo = () => {
 		<div className='recipeinfo'>
 			<h2> Recipe Id:#{ recipeId }</h2>
 			<div className='info'>
-				<p>{info ? info.name : "Name not found"}</p>
+				<h3>{info ? info.name : "Name not found"}</h3>
 				<p>{info ? info.description : "Description Not found"}</p>
 				<p>{info ? info.instructions : "Instructions not found"}</p>	
 				<table>
@@ -61,9 +61,9 @@ const RecipeInfo = () => {
 				</table>
 				<p>Created: {info.created_at}</p>
 			</div>
-			<Link to='/recipes'>back to products</Link>
-			<Link to='/recipes' onClick={deleteRecipe}>DELETE RECIPE</Link>
-			<Link to='/recipes' onClick={saveRecipe}>Save Recipe</Link>
+			<Link to='/recipes'><button>back to products</button></Link>
+			<Link to='/recipes' onClick={deleteRecipe}><button>DELETE RECIPE</button></Link>
+			<Link to='/recipes' onClick={saveRecipe}><button>Save Recipe</button></Link>
 		</div>
 	);
 };
