@@ -5,19 +5,19 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <NavLink to='/' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                Home
+                <button>Home</button>
             </NavLink>
             <NavLink to='/recipes' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                Recipes
+                <button>Recipes</button>
             </NavLink>
             <NavLink to='/newRecipe' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                Create Recipe
+                <button>Create Recipe</button>
             </NavLink>
             <NavLink to='/profile' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                Profile
+                <button>Profile</button>
             </NavLink>
             <NavLink to='/login' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                Login
+                <button>Login</button>
             </NavLink>
             {/* TODO: Add (if logged-in -> show profile else show login) */}
         </nav>

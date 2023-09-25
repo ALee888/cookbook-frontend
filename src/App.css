@@ -20,8 +20,15 @@
     --sunglow: #ffcb47ff;
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max;
+}
+
 body {
-    background-color: var(--celadon);
+    background-color: var(--light-blue);
 }
 
 .app {
@@ -32,17 +39,19 @@ body {
     align-items: center;
 }
 
+/* --- Home page --- */
 .home {
     color: black;
     text-align: center;
 }
-/* Nav 
-nav {
+
+/* --- Nav --- */
+.navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--cinereous);
-    position: fixed;
+    background-color: var(--celadon);
+    /*position: fixed;*/
     top: 0;
     left: 0;
     width: 100%;
@@ -50,35 +59,38 @@ nav {
     font-size: 1.2rem;
     z-index: 9999;
 }
-nav img {
+.navbar img {
     max-width: 50px;
     max-height: 50px;
     margin-right: 10px;
     margin-left: 10px;
     cursor: pointer;
 }
-nav button {
+.navbar a {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.navbar button {
     background-color: transparent;
     color: var(--tea-green);
     font-size: inherit;
     cursor: pointer;
-    margin-right: 10px;
-    margin-left: 10px;
 }
-nav button:hover {
+.navbar button:hover {
     color: #ddd;
 }
-nav button:focus {
+.navbar button:focus {
     outline: none;
     box-shadow: none;
 }
-nav button.active {
+.navbar button.active {
     color: #fff;
     background-color: #4CAF50;
 }
-*/
+
 .link {
-    color: grey;
+    color: var(--ebony);
+    background-color: var(--cadet-gray);
 }
 
 .active {
@@ -111,15 +123,14 @@ nav button.active {
 /* --- RecipeInfo --- */
 .recipeinfo {
     margin-top: 10px;
-    width: 50%;
     background-color: var(--light-blue); 
     text-align: center;
     border: 1px solid;
     
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    
 }
 
 .recipeinfo button {
