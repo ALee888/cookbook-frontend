@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -28,6 +29,7 @@ const Register = () => {
         })
 
         // TODO: Go to login
+        useNavigate('/Login')
     };
 
     // Fetch POST Request

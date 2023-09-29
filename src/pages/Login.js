@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useSignIn } from 'react-auth-kit';
 const Login = () => {
     const signIn = useSignIn()
@@ -68,6 +69,7 @@ const Login = () => {
                 </div>
                 <button type='submit'>Login</button>
             </form>
+            <Link to='/register'><button>Register</button></Link>
         </div>
     )
 };

@@ -8,6 +8,7 @@ import RecipeInfo from './pages/RecipeInfo';
 import NewRecipe from './pages/NewRecipe';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Error from './pages/Error';
 import SharedLayout from './pages/SharedLayout';
 
@@ -23,6 +24,7 @@ function App() {
                         <Route path='recipes/:recipeId' element={<RecipeInfo />} />
                         <Route path='newRecipe' element={<NewRecipe />} />
                         <Route path='login' element={<Login setUser={setUser}></Login>} />
+                        <Route path='register' element={<Register />} />
                         <Route path='profile' element={<Profile user={user}></Profile>} />
                         <Route path='*' element={<Error />} />
                     </Route>
