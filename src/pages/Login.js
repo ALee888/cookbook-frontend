@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSignIn } from 'react-auth-kit';
 const Login = () => {
+    const navigate = useNavigate();
     const signIn = useSignIn()
     const [user, setUser] = useState({
         email: '',
@@ -21,27 +22,29 @@ const Login = () => {
         // Call API
         fetchPost();
         
+        // Authenticate User based on response
+
         // Reset User Inputs
         setUser({
-            name: '',
             email: '',
             password: ''            
-        })
-
-        // TODO: Go to Home Screen
+        });
+        
+        navigate('/profile');
     };
 
     // Fetch POST Request
     const fetchPost = async () => {
-        const response = await fetch(`http://localhost:4000/users/register`, {
+        const response = await fetch(`http://localhost:4000/login`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',
             },
             body: JSON.stringify(user),
         });
-        console.log(response.json());
+        return response.json();
     };
+
     return (
         <div className="login">
             <form onSubmit={handleSubmit}>
