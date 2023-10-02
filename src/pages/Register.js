@@ -21,8 +21,11 @@ const Register = () => {
         e.preventDefault();
         
         // Call API
-        fetchPost();
+        const response = fetchPost();
         
+        // Document
+        document.cookie = `token=${response.data.token}; path=/`;
+
         // Reset User
         setUser({
             username: '',
@@ -43,7 +46,7 @@ const Register = () => {
             },
             body: JSON.stringify(user),
         });
-        console.log(response.json());
+        return(response.json);
     };
 
     return(
