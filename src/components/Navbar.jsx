@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useIsAuthenticated } from "react-auth-kit";
 
 const Navbar = () => {
+    const isAuthenticated = useIsAuthenticated();
+    
     return (
         <nav className="navbar">
             <NavLink to='/' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
@@ -13,13 +16,15 @@ const Navbar = () => {
             <NavLink to='/newRecipe' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
                 <button>Create Recipe</button>
             </NavLink>
-            <NavLink to='/profile' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                <button>Profile</button>
-            </NavLink>
-            <NavLink to='/login' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
-                <button>Login</button>
-            </NavLink>
-            {/* TODO: Add (if logged-in -> show profile else show login) */}
+            { isAuthenticated() ? (
+                <NavLink to='/profile' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
+                    <button>Profile</button>
+                </NavLink>
+            ) : (
+                <NavLink to='/login' className={({ isActive }) => (isActive ? 'link active' : 'link')}>
+                    <button>Login</button>
+                </NavLink>
+            )}
         </nav>
     );
 };

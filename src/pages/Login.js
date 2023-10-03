@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-//import { useSignIn } from 'react-auth-kit';
+import { useSignIn } from 'react-auth-kit';
+
 const Login = () => {
     const navigate = useNavigate();
-    //const signIn = useSignIn()
+    const signIn = useSignIn()
+    
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -19,18 +21,29 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Call API
-        fetchPost();
+        // Fetch Token from api
+        const token = fetchPost();
         
         // Authenticate User based on response
-
-        // Reset User Inputs
-        setUser({
-            email: '',
-            password: ''            
-        });
-        
-        navigate('/profile');
+        if(signIn(
+            {
+                token: token,
+                expiresIn: 60, //Time for which the auth token will last, in minutes
+                tokenType: "Bearer",
+                authState: user // State of the Authorized user
+            }
+        )){
+            console.log('Successful User sign-in');
+            // Reset User Inputs
+            setUser({
+                email: '',
+                password: ''            
+            });
+            
+            navigate('/profile');
+        } else {
+            console.error('Error trying to sign-in with react-auth-kit');
+        }
     };
 
     // Fetch POST Request

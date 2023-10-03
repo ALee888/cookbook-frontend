@@ -11,7 +11,6 @@ function Recipes() {
                 'http://localhost:4000/recipes'
             );
             const data = await response.json();
-            console.log(data);
             setRecipes(data.result);
         };
         fetchPost();
