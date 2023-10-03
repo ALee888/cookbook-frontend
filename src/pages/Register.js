@@ -21,10 +21,7 @@ const Register = () => {
         e.preventDefault();
         
         // Call API
-        const response = fetchPost();
-        
-        // Document
-        document.cookie = `token=${response.data.token}; path=/`;
+        fetchPost();
 
         // Reset User
         setUser({

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
+import { useAuthUser } from 'react-auth-kit';
 
 const RecipeInfo = () => {
 	const { recipeId } = useParams();
 	const location = useLocation();
 	const [ingredients, setIngredients] = useState([]);
 	const info = location.state;
-	const userId = 2; // TODO: Grab from login system
+	const authUser = useAuthUser();
 
 	// GET with fetch API
 	useEffect(() => {
@@ -26,16 +27,20 @@ const RecipeInfo = () => {
     };
 
 	const saveRecipe = async () => {
-		
-		// POST users-recipes
-		const response = await fetch (`http://localhost:4000/users-recipes`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ userId: userId, recipeId: recipeId })
-		});
-		console.log(response.json());
+		if (authUser()) {
+			const userId = authUser().id;
+			// POST users-recipes
+			const response = await fetch (`http://localhost:4000/users-recipes`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ userId: userId, recipeId: recipeId })
+			});
+			console.log(response.json());
+		} else {
+			console.error('ERROR: User not authenticated');
+		}
 	}
 
 	return (
@@ -63,7 +68,7 @@ const RecipeInfo = () => {
 				<p>{info ? info.instructions : "Instructions not found"}</p>	
 			</div>
 			<div>
-				<Link to='/recipes'><button>back to products</button></Link>
+				<Link to='/recipes'><button>Back to Recipes</button></Link>
 				<Link to='/recipes' onClick={deleteRecipe}><button>DELETE RECIPE</button></Link>
 				<Link to='/recipes' onClick={saveRecipe}><button>Save Recipe</button></Link>
 			</div>

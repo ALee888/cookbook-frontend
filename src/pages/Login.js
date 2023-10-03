@@ -18,19 +18,19 @@ const Login = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         // Fetch Token from api
-        const token = fetchPost();
-        
+        const authUser = await fetchPost();
+
         // Authenticate User based on response
         if(signIn(
             {
-                token: token,
+                token: authUser.token,
                 expiresIn: 60, //Time for which the auth token will last, in minutes
                 tokenType: "Bearer",
-                authState: user // State of the Authorized user
+                authState: authUser // State of the Authorized user
             }
         )){
             console.log('Successful User sign-in');
@@ -39,7 +39,6 @@ const Login = () => {
                 email: '',
                 password: ''            
             });
-            
             navigate('/profile');
         } else {
             console.error('Error trying to sign-in with react-auth-kit');
