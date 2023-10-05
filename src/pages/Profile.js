@@ -30,7 +30,6 @@ const Profile = () => {
             const data = await response.json();
             setRecipes(data.result);
         };
-        console.log('EFFECT:');
         fetchUser();
         fetchRecipes();
 
@@ -39,14 +38,23 @@ const Profile = () => {
     const deleteProfile = () => {
         //TODO: Protected delete
         // To retrieve the token
-        const token = document.cookie.split('; ')
-        .find(row => row.startsWith('token='))
-        .split('=')[1];
-
-        console.log('Token: ' + token);
     };
-    const removeRecipe = () => {
-        //TODO: Remove record from users-recipes
+    const removeRecipe = async (recipeId) => {
+        console.log(recipeId);
+		await fetch(`http://localhost:4000/users-recipes/?user_id=${userId}&recipe_id=${recipeId}`, { method: 'DELETE' });
+        
+        /* // Find index of item
+        let recipeIndex = recipes.length-1;
+        while (recipes[recipeIndex].id !== recipeId) {
+            recipeIndex--;
+        }
+        console.log('------------');
+        console.log(recipes);
+        console.log(recipeIndex);
+        // Remove recipe from list
+        let newRecipes = recipes.splice(recipeIndex, 1);
+        setRecipes(newRecipes); */
+
     }
 
     const handleSignOut = () => {
@@ -82,7 +90,7 @@ const Profile = () => {
                             </Link>
                         </td>
                         <td>{recipe.created_at}</td>
-                        <td><button onClick={removeRecipe}>Unsave</button></td>
+                        <td><button onClick={() => removeRecipe(recipe.id)}>Unsave</button></td>
                     </tr>
                 ))}
             </table>
