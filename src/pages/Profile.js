@@ -35,9 +35,10 @@ const Profile = () => {
 
     }, [userId]);
 
-    const deleteProfile = () => {
-        //TODO: Protected delete
+    const deleteProfile = async () => {
         // To retrieve the token
+        await fetch(`http://localhost:4000/users/?user_id=${userId}`, { method: 'DELETE' });
+        
     };
     const removeRecipe = async (recipeId) => {
         console.log(recipeId);
