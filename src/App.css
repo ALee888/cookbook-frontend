@@ -20,12 +20,6 @@
     --sunglow: #ffcb47ff;
 }
 
-#root {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: max;
-}
 
 body {
     background-color: var(--light-blue);
@@ -41,8 +35,20 @@ body {
 
 /* --- Home page --- */
 .home {
+    background: url(../public/Peony.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+
     color: black;
+
     text-align: center;
+    height: 100vh;
+}
+.home h1 {
+    font-family: 'Indie Flower';
+    font-size: 80px;
 }
 
 /* --- Nav --- */

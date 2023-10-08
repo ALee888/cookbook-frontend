@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from '../components/Searchbar';
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
@@ -19,6 +20,7 @@ function Recipes() {
     return (
         <div className='recipes'>
             <h1>Recipes</h1>
+            <SearchBar/>
             <table>
                 <tr>
                     <th>id</th>
