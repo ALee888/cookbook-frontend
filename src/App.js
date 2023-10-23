@@ -21,6 +21,7 @@ function App() {
             authName={'_auth'}
             cookieDomain={window.location.hostname}
             cookieSecure={window.location.protocol === "https:"}>
+            <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'></link>
             <Router>
                 <Routes>
                     <Route path='/' element={<SharedLayout />}>

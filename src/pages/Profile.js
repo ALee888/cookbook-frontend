@@ -15,7 +15,6 @@ const Profile = () => {
     // GET user_recipes with fetch API
     useEffect(() => {
         const fetchUser = async() => {
-            // TODO: Make get user data api call to get the basics
             const response = await fetch(
                 `http://localhost:4000/users/?id=${userId}`
             );
@@ -43,19 +42,6 @@ const Profile = () => {
     const removeRecipe = async (recipeId) => {
         console.log(recipeId);
 		await fetch(`http://localhost:4000/users-recipes/?user_id=${userId}&recipe_id=${recipeId}`, { method: 'DELETE' });
-        
-        /* // Find index of item
-        let recipeIndex = recipes.length-1;
-        while (recipes[recipeIndex].id !== recipeId) {
-            recipeIndex--;
-        }
-        console.log('------------');
-        console.log(recipes);
-        console.log(recipeIndex);
-        // Remove recipe from list
-        let newRecipes = recipes.splice(recipeIndex, 1);
-        setRecipes(newRecipes); */
-
     }
 
     const handleSignOut = () => {

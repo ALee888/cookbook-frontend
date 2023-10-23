@@ -45,8 +45,8 @@ const RecipeInfo = () => {
 
 	return (
 		<div className='recipeinfo'>
+			<h1> {info ? info.name : "Name not found"} </h1>
 			<div className='recipeHeader'>
-				<h1> {info ? info.name : "Name not found"} </h1>
 				<p> {info ? info.created_by : "Creator N/A"} </p>			
 				<p> Created: {info.created_at}</p>
 				<p>{info ? info.description : "Description Not found"}</p>
@@ -70,7 +70,7 @@ const RecipeInfo = () => {
 			<div>
 				<Link to='/recipes'><button>Back to Recipes</button></Link>
 				<Link to='/recipes' onClick={deleteRecipe}><button>DELETE RECIPE</button></Link>
-				<Link to='/recipes' onClick={saveRecipe}><button>Save Recipe</button></Link>
+				<Link to='/profile' onClick={saveRecipe}><button>Save Recipe</button></Link>
 			</div>
 		</div>
 	);

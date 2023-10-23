@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import SearchBar from '../components/Searchbar';
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
