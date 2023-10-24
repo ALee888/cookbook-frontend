@@ -49,6 +49,11 @@ const Profile = () => {
         navigate('/');
     };
 
+    const anyListExport = () => {
+        //TODO: Anylist functionality
+        
+    };
+
     return (
         <div className="profile">
             <h1>Profile</h1>
@@ -77,12 +82,19 @@ const Profile = () => {
                             </Link>
                         </td>
                         <td>{recipe.created_at}</td>
-                        <td><button onClick={() => removeRecipe(recipe.id)}>Unsave</button></td>
+                        
+                        <td>
+                            <button onClick={() => removeRecipe(recipe.id)}>Unsave</button>
+                            <button onClick={() => anyListExport(recipe)}>Export</button>
+                        </td>
                     </tr>
                 ))}
             </table>
-            <button onClick={handleSignOut}>Sign Out</button>
-            <button onClick={deleteProfile}>Delete Profile</button>
+            <div>
+                <button onClick={handleSignOut}>Sign Out</button>
+                <button onClick={deleteProfile}>Delete Profile</button>
+            </div>
+            
 
         </div>
     )

@@ -52,7 +52,6 @@ h1 {
 /* --- Home page --- */
 .home {
     text-align: center;
-    height: 100vh;
 }
 .home h1 {
     
@@ -112,14 +111,6 @@ h1 {
 
 /* --- Recipes --- */
 .recipes {
-    background: url(../public/Peony.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-    background-attachment: fixed;
-    
-    color: black;
-    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -173,3 +164,30 @@ h1 {
     margin: 5px;
     background-color: var(--sunglow);
 }
+
+/* --- Profile --- */
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile table{
+    border: 1px solid;
+    border-collapse: collapse;
+    margin-top: 25px;
+    width: 1000px;
+    background-color: var(--periwinkle);
+    box-shadow: 2px 2px 5px black;
+}
+.profile th {
+    border: 1px solid;
+}
+.profile td {
+    text-align: center;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.recipe:hover {background-color: var(--sunglow)}
