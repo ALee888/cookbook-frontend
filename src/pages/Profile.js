@@ -42,14 +42,19 @@ const Profile = () => {
     const unsaveRecipe = async (recipeId) => {
         console.log(recipeId);
 		await fetch(`http://localhost:4000/users-recipes/?user_id=${userId}&recipe_id=${recipeId}`, { method: 'DELETE' });
+        window.location.reload();
+
     }
     const deleteRecipe = async (recipeId, created_by) => {
 		// TODO: Check User authorizatoin
         const userId = authUser().id;
-        if (userId == created_by) {
+        if (userId === created_by) {
             await unsaveRecipe(recipeId);
     		await fetch(`http://localhost:4000/recipes/?id=${recipeId}`, { method: 'DELETE' });
-        }    
+            window.location.reload();
+        } else {
+            console.error("ERROR: User does not have access to this recipe")
+        }
     };
     const handleSignOut = () => {
         signOut();
