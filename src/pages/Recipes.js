@@ -51,7 +51,8 @@ function Recipes() {
                                         name: recipe.name,
                                         description: recipe.description,
                                         instructions: recipe.instructions,
-                                        created_at: recipe.created_at
+                                        created_at: recipe.created_at,
+                                        created_by: recipe.created_by
                                     }}>    
                                     {recipe.name}
                                 </Link>

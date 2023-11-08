@@ -39,11 +39,18 @@ const Profile = () => {
         await fetch(`http://localhost:4000/users/?user_id=${userId}`, { method: 'DELETE' });
         
     };
-    const removeRecipe = async (recipeId) => {
+    const unsaveRecipe = async (recipeId) => {
         console.log(recipeId);
 		await fetch(`http://localhost:4000/users-recipes/?user_id=${userId}&recipe_id=${recipeId}`, { method: 'DELETE' });
     }
-
+    const deleteRecipe = async (recipeId, created_by) => {
+		// TODO: Check User authorizatoin
+        const userId = authUser().id;
+        if (userId == created_by) {
+            await unsaveRecipe(recipeId);
+    		await fetch(`http://localhost:4000/recipes/?id=${recipeId}`, { method: 'DELETE' });
+        }    
+    };
     const handleSignOut = () => {
         signOut();
         navigate('/');
@@ -60,6 +67,8 @@ const Profile = () => {
             {/* TODO: Show user info*/}
             <h2>Name: {user.username}</h2>
             <h3>Email: {user.email}</h3>
+            <h2>Created Recipes</h2>
+            <h2>Saved Recipes</h2>
             <table>
                 <tr>
                     <th>id</th>
@@ -76,7 +85,8 @@ const Profile = () => {
                                     name: recipe.name,
                                     description: recipe.description,
                                     instructions: recipe.instructions,
-                                    created_at: recipe.created_at
+                                    created_at: recipe.created_at,
+                                    created_by: recipe.created_by
                                 }}>    
                                 {recipe.name}
                             </Link>
@@ -84,8 +94,9 @@ const Profile = () => {
                         <td>{recipe.created_at}</td>
                         
                         <td>
-                            <button onClick={() => removeRecipe(recipe.id)}>Unsave</button>
-                            <button onClick={() => anyListExport(recipe)}>Export</button>
+                            <button onClick={() => unsaveRecipe(recipe.id)}>Unsave</button>
+                            <button onClick={() => anyListExport(recipe)}>Export</button>                
+            				<button onClick={() => deleteRecipe(recipe.id, recipe.created_by)}>DELETE RECIPE</button>
                         </td>
                     </tr>
                 ))}

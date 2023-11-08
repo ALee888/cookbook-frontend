@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthUser } from 'react-auth-kit';
 
 function NewRecipe () {
     const [recipe, setRecipe] = useState({
@@ -6,7 +7,20 @@ function NewRecipe () {
         description: '',
         instructions: '',
         ingredients: [],
+        created_by: 0
     });
+    const authUser = useAuthUser();
+    
+    useEffect(() => {
+        // Verify Login
+        if (authUser()) {
+            //Update userId
+            setRecipe({ ...recipe, created_by: authUser().id});
+        } else {
+            console.error('ERROR: User not authenticated');
+            // TODO: PopUp redirect to login
+        }
+    }, []);
 
     // Handle input changes for recipe details
     const handleInputChange = (e) => {
@@ -33,20 +47,22 @@ function NewRecipe () {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Call API
-		fetchPost();
+        // Call APIs
+        fetchPost();
         
         // Reset Form
         setRecipe({
             name: '',
             description: '',
             instructions: '',
-            ingredients: []
+            ingredients: [],
+            created_by: 0
         })
     };
 
     // Fetch POST Request
     const fetchPost = async () => {
+        console.log(recipe);
         const response = await fetch(`http://localhost:4000/recipes`, {
             method: 'POST',
             headers: {
@@ -54,8 +70,28 @@ function NewRecipe () {
             },
             body: JSON.stringify(recipe),
         });
-        console.log(response.json());
+        const res = await response.json();
+        console.log(res)
+        if (res.recipeId) {
+            saveRecipe(res.recipeId)
+        }
+        // TODO: Error handling on this before saveRecipe
+        return res.insertId;
+
     };
+    const saveRecipe = async (recipeId) => {
+        console.log('in this bitch')
+        // POST users-recipes
+        let userId = authUser().id
+        const response = await fetch (`http://localhost:4000/users-recipes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: userId, recipeId: recipeId })
+        });
+        console.log(response.json());
+	}
 
     return (
         <div className='newRecipe'>

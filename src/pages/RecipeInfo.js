@@ -21,10 +21,7 @@ const RecipeInfo = () => {
 		fetchPost();
 	}, [recipeId]);
 
-	const deleteRecipe = async () => {
-		// TODO: Check User authorizatoin
-		await fetch(`http://localhost:4000/recipes/?id=${recipeId}`, { method: 'DELETE' });
-    };
+	
 
 	const saveRecipe = async () => {
 		if (authUser()) {
@@ -47,7 +44,7 @@ const RecipeInfo = () => {
 		<div className='recipeinfo'>
 			<h1> {info ? info.name : "Name not found"} </h1>
 			<div className='recipeHeader'>
-				<p> {info ? info.created_by : "Creator N/A"} </p>			
+				<p> Created By: {info ? info.created_by : "Creator N/A"} </p>			
 				<p> Created: {info.created_at}</p>
 				<p>{info ? info.description : "Description Not found"}</p>
 			</div>
@@ -69,7 +66,6 @@ const RecipeInfo = () => {
 			</div>
 			<div>
 				<Link to='/recipes'><button>Back to Recipes</button></Link>
-				<Link to='/recipes' onClick={deleteRecipe}><button>DELETE RECIPE</button></Link>
 				<Link to='/profile' onClick={saveRecipe}><button>Save Recipe</button></Link>
 			</div>
 		</div>

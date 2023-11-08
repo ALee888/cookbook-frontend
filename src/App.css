@@ -42,6 +42,12 @@ body {
 
 }
 
+#root {
+    background-color: var(--celadon);
+    height: 100vh;
+    width: 100vh;
+}
+
 h1 {
     font-family: 'Indie Flower';
     font-size: 80px;
