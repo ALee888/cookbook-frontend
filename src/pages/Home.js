@@ -13,7 +13,13 @@ const Home = () => {
             <h1>Our Cookbook!</h1>
             <div className="searchbar">
                 <input type="text" value={searchInput} onChange={handleInputChange} />
-                <Link to={`/recipes`}><img src={searchImage} alt="search"/></Link>
+                <Link 
+                    to={`/recipes`} 
+                    state= {{
+                        search: searchInput
+                    }}>
+                    <img src={searchImage} alt="search"/>
+                </Link>
             </div>
         </div>
     );

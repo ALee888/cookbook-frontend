@@ -4,8 +4,8 @@ import { useAuthUser } from 'react-auth-kit';
 
 const RecipeInfo = () => {
 	const { recipeId } = useParams();
-	const location = useLocation();
 	const [ingredients, setIngredients] = useState([]);
+	const location = useLocation();
 	const info = location.state;
 	const authUser = useAuthUser();
 

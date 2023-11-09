@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [filteredRecipes, setFilteredRecipes] = useState(recipes);
+    const location = useLocation();
+    const locationState = location.state;
 
     const handleInputChange = (event) => {
         event.preventDefault();
@@ -28,6 +30,9 @@ function Recipes() {
             setRecipes(data.result);
         };
         fetchPost();
+        if (locationState) {        
+            setSearchInput(locationState.search)
+        }
     }, []);
 
     return (
