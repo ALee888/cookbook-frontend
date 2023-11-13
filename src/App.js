@@ -9,6 +9,7 @@ import NewRecipe from './pages/NewRecipe';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Anylist from './pages/Anylist';
 import Error from './pages/Error';
 import SharedLayout from './pages/SharedLayout';
 
@@ -36,6 +37,7 @@ function App() {
                                 <Profile user={user}></Profile>
                             </RequireAuth> 
                         }/>
+                        <Route path='anylist' element={<Anylist />} />
                         <Route path='*' element={<Error />} />
                     </Route>
                 </Routes>
